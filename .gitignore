@@ -1,0 +1,4 @@
+# Arquivos sem permisão de upload.
+
+*.pem
+mysql/ca-key.pem

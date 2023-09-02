@@ -1,0 +1,11 @@
+FROM node:15
+
+WORKDIR /usr/src/app
+
+RUN npm install mysql --save
+
+COPY . .
+
+
+
+CMD [ "node", "index.js" ]
