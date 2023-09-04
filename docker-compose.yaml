@@ -17,12 +17,13 @@ services:
       - db
 
   db:
-    image: mysql:5.7
+    build: 
+      context: .
+      dockerfile: Dockerfile.prod   
     command: --innodb-use-native-aio=0
     container_name: db    
     tty: true
-    volumes: 
-      - ./scripts:/docker-entrypoint-initdb.d
+    volumes:      
       - ./mysql:/var/lib/mysql          
     environment: 
       - MYSQL_DATABASE=nodedb

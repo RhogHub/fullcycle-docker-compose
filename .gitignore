@@ -1,4 +1,2 @@
-# Arquivos sem permisão de upload.
-
-*.pem
-mysql/ca-key.pem
+node/node_modules
+mysql
