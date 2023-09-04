@@ -3,15 +3,11 @@ version: '3'
 services: 
 
   app:
-    build: 
-      context: ./node
-      dockerfile: Dockerfile.prod   
+    image: evincarsn/node-nginx-fullcycle:latest
     container_name: app
     restart: always   
     networks: 
-      - node-network    
-    volumes: 
-      - ./node:/usr/src/app
+      - node-network
     tty: true   
     depends_on: 
       - db
