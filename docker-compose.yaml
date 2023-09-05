@@ -3,7 +3,9 @@ version: '3'
 services: 
 
   app:
-    image: evincarsn/node-nginx-fullcycle:latest
+    build: 
+      context: ./node
+      dockerfile: Dockerfile.prod 
     container_name: app
     restart: always   
     networks: 
