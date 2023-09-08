@@ -7,9 +7,11 @@ services:
       context: ./node
       dockerfile: Dockerfile.prod 
     container_name: app
-    restart: always   
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 30s docker-entrypoint.sh
     networks: 
       - node-network
+    volumes: 
+      - ./node:/usr/src/app
     tty: true   
     depends_on: 
       - db
@@ -19,7 +21,8 @@ services:
       context: .
       dockerfile: Dockerfile.prod   
     command: --innodb-use-native-aio=0
-    container_name: db    
+    container_name: db   
+    restart: always 
     tty: true
     volumes:      
       - ./mysql:/var/lib/mysql          
@@ -35,10 +38,14 @@ services:
       dockerfile: Dockerfile.prod    
     container_name: nginx
     restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "8080:80" 
     networks: 
-      - node-network     
+      - node-network 
+    depends_on:
+      - app      
 
 networks: 
   node-network:
