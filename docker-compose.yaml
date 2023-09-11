@@ -7,7 +7,7 @@ services:
       context: ./node
       dockerfile: Dockerfile.prod 
     container_name: app
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 30s docker-entrypoint.sh
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 30s docker-entrypoint.sh node index.js
     networks: 
       - node-network
     volumes: 
@@ -21,8 +21,7 @@ services:
       context: .
       dockerfile: Dockerfile.prod   
     command: --innodb-use-native-aio=0
-    container_name: db   
-    restart: always 
+    container_name: db      
     tty: true
     volumes:      
       - ./mysql:/var/lib/mysql          

@@ -2,6 +2,7 @@ FROM node:16
 
 WORKDIR /usr/src/app
 
+
 ENV DOCKERIZE_VERSION v0.7.0
 
 RUN apt-get update \
@@ -13,4 +14,4 @@ COPY . .
 
 RUN npm install
 
-CMD [ "node", "index.js" ]
+# CMD [ "node", "index.js" ]
